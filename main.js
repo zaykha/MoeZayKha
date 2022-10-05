@@ -23,19 +23,19 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.target = new THREE.Vector3(-8.7, 4.4, 4.4);
 renderer.render(scene, camera);
 
-function addStar(){
-    const geometry = new THREE.SphereGeometry(0.25,24,24);
-    const material = new THREE.MeshStandardMaterial({color: 0xb7cdf7})
-    const star = new THREE.Mesh ( geometry, material);
+// function addStar(){
+//     const geometry = new THREE.SphereGeometry(0.25,24,24);
+//     const material = new THREE.MeshStandardMaterial({color: 0xb7cdf7})
+//     const star = new THREE.Mesh ( geometry, material);
 
-    const [x,y,z] =Array(3).fill().map(()=> THREE.MathUtils.randFloatSpread(100));
-    star.position.set(x,y,z);
-    scene.add(star)
-}
-Array(300).fill().forEach(addStar);
+//     const [x,y,z] =Array(3).fill().map(()=> THREE.MathUtils.randFloatSpread(100));
+//     star.position.set(x,y,z);
+//     scene.add(star)
+// }
+// Array(300).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load('galaxy2.jpg');
-scene.background = spaceTexture;
+// const spaceTexture = new THREE.TextureLoader().load('galaxy2.jpg');
+// scene.background = spaceTexture;
 
 
 
@@ -56,13 +56,13 @@ loadingManager.onLoad = function(){
 
 const loader = new GLTFLoader(loadingManager);
 loader.load(
-    'test.glb', (gltf)=>{
+    'MZKwebsite.glb', (gltf)=>{
         const Model = gltf.scene;
         scene.add(Model);
         mixer = new THREE.AnimationMixer(Model);
         let clips = gltf.animations;
         // jsanidesign = THREE.AnimationClip.findByName(clips, 'JSEng.001Action')
-        console.log(Model.position);
+        // console.log(Model.position);
 
         clips.forEach(function(clip){
             const action = mixer.clipAction(clip);
@@ -125,16 +125,18 @@ function media(x) {
         // camera.position.setY(7.9926503201927055);
         // camera.position.setZ(8.589577576676497);
 
-        camera.position.setX(9.047917002076815);
-        camera.position.setY(13.385470590523568);
-        camera.position.setZ(9.807665782056354);
-        
-        controls.target.set(-4.966121757132901, 6.44879819363984,-5.5844968904982535) 
-    } else {
+        camera.position.setX(7);
+        camera.position.setY(6.797);
+        camera.position.setZ(15.885);
+      } else {
          
-         camera.position.setX(7);
-         camera.position.setY(6.797);
-         camera.position.setZ(15.885);
+      
+      camera.position.setX(1.8657201411138535);
+      camera.position.setY(1.4935185925537058);
+      camera.position.setZ(2.66097357050962);
+      
+      controls.target.set(-3.7169063104491844, -0.14855073501722424,-0.6087966729655833) 
+        
       
     }
   }
@@ -142,7 +144,7 @@ function media(x) {
 media(x) ;
 
 
-const ambientLight = new THREE.AmbientLight(0xffffff,1.2);
+const ambientLight = new THREE.AmbientLight(0xffffff,0.3);
 scene.add(ambientLight);
 // const light = new THREE.HemisphereLight( 0xffffbb, 0xffffbb, 1 );
 // light.position.set(0,25,0);
@@ -170,11 +172,11 @@ const light4 = new THREE.RectAreaLight(color, 1.5, width, height);
 
     scene.add(light, light1, light2, light3, light4);
 
-// const lightHelper = new THREE.PointLightHelper(light4)
-// const gridHelper = new THREE.GridHelper(200,50);
-// scene.add(lightHelper, gridHelper);
-// const axesHelper = new THREE.AxesHelper( 5 );
-// scene.add( axesHelper );
+const lightHelper = new THREE.PointLightHelper(light4)
+const gridHelper = new THREE.GridHelper(200,50);
+scene.add(lightHelper, gridHelper);
+const axesHelper = new THREE.AxesHelper( 5 );
+scene.add( axesHelper );
 
 // ------------------------------Routing for Web (1024px)---------------------------
 const nav =document.getElementById('navflex');
@@ -200,21 +202,24 @@ function filterermobile(x){
 }
 
     Home.addEventListener('click', function() {
+      
         new TWEEN.Tween(camera.position)
-    .to({x:5.318316,y:2.484750,z:12.086898 },1000).easing(TWEEN.Easing.Quadratic.Out)
+    .to({
+      x:1.8657201411138535,y:1.4935185925537058,z:2.66097357050962 },1000).easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
     new TWEEN.Tween(controls.target)
-    .to({ x:-11.8700,y:5.63094,z:-2.109401},1000).easing(TWEEN.Easing.Quadratic.Out)
+    .to({ 
+       x:-3.7169063104491844,y:-0.14855073501722424,z:-0.6087966729655833},1000).easing(TWEEN.Easing.Quadratic.Out)
     .start();
     });
     homeicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-    .to({x:5.318316,y:2.484750,z:12.086898 },1000).easing(TWEEN.Easing.Quadratic.Out)
+    .to({x:1.8657201411138535,y:1.4935185925537058,z:2.66097357050962 },1000).easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
     new TWEEN.Tween(controls.target)
-    .to({ x:-11.8700,y:5.63094,z:-2.109401},1000).easing(TWEEN.Easing.Quadratic.Out)
+    .to({ x:-3.7169063104491844,y:-0.14855073501722424,z:-0.6087966729655833},1000).easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
         filterer(sectionarray);
@@ -237,11 +242,11 @@ function filterermobile(x){
 
     design.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x:2.65,y:4.25,z:0.260 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.3004146496755853, y: 1.0067967671531366, z: -0.6522936262318377},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x:-3,y:2.82,z:-2.973},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -3.7169063104491844, y: -0.14855073501722416, z: -0.6087966729655832},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
       nav.style.animation= 'moveleft 3s forwards';
       designsection.style.animation = 'moveright 3s forwards';
@@ -251,11 +256,11 @@ function filterermobile(x){
     });
     designicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x:2.65,y:4.25,z:0.260 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.3004146496755853, y: 1.0067967671531366, z: -0.6522936262318377 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x:-3,y:2.82,z:-2.973},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({  x: -3.7169063104491844, y: -0.14855073501722416, z: -0.6087966729655832},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       filterer(sectionarray);
@@ -278,11 +283,11 @@ function filterermobile(x){
 
    engineering.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x:-2.373,y:7.17899,z:-0.6299 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.3770444383937166, y: 1.2798507946275264, z: 0.11017145589707791 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x:-4.573,y:5.712,z:-1.525},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -3.6317596060389983, y: 1.2749812822443247, z: 0.056998958031140634},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
       nav.style.animation= 'moveleft 3s forwards'; nav.style.animation= 'moveleft 3s forwards';
       engineeringsection.style.animation = 'moveright 3s forwards';
@@ -293,11 +298,11 @@ function filterermobile(x){
     });
     engineeringicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x:-2.373,y:7.17899,z:-0.6299 },1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -0.3770444383937166, y: 1.2798507946275264, z: 0.11017145589707791 },1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({ x:-4.573,y:5.712,z:-1.525},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({ x: -3.6317596060389983, y: 1.2749812822443247, z: 0.056998958031140634},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterer(sectionarray);
@@ -320,11 +325,11 @@ function filterermobile(x){
 
     corporate.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x:-2.1010,y:9.3839,z:-4.91052 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.40273215727976264, y: 0.8630821307561408, z: -0.5543521621716916 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x:-4.3001,y:7.9178,z:-5.8057},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -0.44797742114527406, y: 0.7697220507622689, z: -1.4991421131936602},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
       nav.style.animation= 'moveleft 3s forwards';
       corporatesection.style.animation = 'moveright 3s forwards';
@@ -335,11 +340,11 @@ function filterermobile(x){
     });
     corporateicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x:-2.1010,y:9.3839,z:-4.91052 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.40273215727976264, y: 0.8630821307561408, z: -0.5543521621716916 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x:-4.3001,y:7.9178,z:-5.8057},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -0.44797742114527406, y: 0.7697220507622689, z: -1.4991421131936602},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       filterer(sectionarray);
@@ -362,11 +367,11 @@ function filterermobile(x){
 
     portfolio.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x:-5.81035,y:12.1179,z:-4.92961 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.23336961201897644, y: 0.6547204944557304, z: 0.0713300436858463 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x:-7.065,y:11.7746,z:-5.3276},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -0.7429086064943, y: 0.6117055886667023, z: 0.023370974162065156},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
       nav.style.animation= 'moveleft 3s forwards';
       portfoliosection.style.animation = 'moveright 3s forwards';
@@ -376,11 +381,11 @@ function filterermobile(x){
     });
     portfolioicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x:-5.81035,y:12.1179,z:-4.92961 },1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -0.23336961201897644, y: 0.6547204944557304, z: 0.0713300436858463 },1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({ x:-7.065,y:11.7746,z:-5.3276},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({ x: -0.7429086064943, y: 0.6117055886667023, z: 0.023370974162065156},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterer(sectionarray);
@@ -403,7 +408,7 @@ function filterermobile(x){
 
     atkhayarplaces.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x:-5.81035,y:12.1179,z:-4.92961 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -3.8675652957615148, y: 0.2664908487348461, z: 0.6890026939014559 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
@@ -431,11 +436,11 @@ function filterermobile(x){
 
     contactus.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x: 1.848547942527988, y: 0.4828506048071382, z: 2.7329222571043306 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.36928712640238687, y: 0.4982440235922387, z: 0.5946230613675185},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x: -5.436852191040968, y: -0.41814811815446523, z: 0.15346855357466058},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -0.39382685371321574, y: 0.49879123456509883, z: 0.6038348267135418},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
       nav.style.animation= 'moveleft 3s forwards';
       contactussection.style.animation = 'moveright 3s forwards';
@@ -445,11 +450,11 @@ function filterermobile(x){
     });
     contactusicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x: 1.848547942527988, y: 0.4828506048071382, z: 2.7329222571043306 },1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -0.36928712640238687, y: 0.4982440235922387, z: 0.5946230613675185 },1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({ x: -5.436852191040968, y: -0.41814811815446523, z: 0.15346855357466058},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({ x: -0.39382685371321574, y: 0.49879123456509883, z: 0.6038348267135418},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterer(sectionarray);
@@ -472,11 +477,11 @@ function filterermobile(x){
 
     career.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x: 3.250271931786169, y: 0.535743402608443, z: 0.34280542161963606 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: 0.6656646841600906, y: 0.6549583621736152, z: 0.8508129496965244 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x: -4.515091793578695, y: 0.04528185424247106, z: 0.3745685448897186},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -1.3192882450818835, y: -1.0116399272442167, z: -1.1155847519569326},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
       nav.style.animation= 'moveleft 3s forwards';
       careersection.style.animation = 'moveright 3s forwards';
@@ -486,11 +491,11 @@ function filterermobile(x){
     });
     careericon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x: 3.250271931786169, y: 0.535743402608443, z: 0.34280542161963606 },1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: 0.6656646841600906, y: 0.6549583621736152, z: 0.8508129496965244 },1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({ x: -4.515091793578695, y: 0.04528185424247106, z: 0.3745685448897186},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({ x: -1.3192882450818835, y: -1.0116399272442167, z: -1.1155847519569326},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterer(sectionarray);
@@ -529,8 +534,8 @@ function animate(time){
      requestAnimationFrame(animate);
     controls.update();
     TWEEN.update(time);
-    // console.log(camera.position);
-    // console.log(controls.target);
+    console.log(camera.position);
+    console.log(controls.target);
     
 }
 
