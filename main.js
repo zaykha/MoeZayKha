@@ -118,6 +118,26 @@ const contactusiconmobile = document.getElementById('contactusiconmobile');
 const careericonmobile = document.getElementById('careericonmobile');
 const atkhayarplacesmobile = document.getElementById('atkhayarplacesmobile');
 
+const Oneat = document.getElementById('Oneat');
+const BJCS = document.getElementById('BJCS');
+const Dnata = document.getElementById('Dnata');
+const JBB = document.getElementById('JBB');
+const Interpan = document.getElementById('Interpan');
+const KT = document.getElementById('KT');
+const Sagawa = document.getElementById('Sagawa');
+const outercvdiv = document.getElementById('outercvdiv');
+const textalignment = document.getElementById('textalignment');
+
+
+const Oneatdiv = document.getElementById('Oneatdiv');
+const BJCSdiv = document.getElementById('BJCSdiv');
+const Dnatadiv = document.getElementById('Dnatadiv');
+const JBBdiv = document.getElementById('JBBdiv');
+const Interpandiv = document.getElementById('Interpandiv');
+const KTdiv = document.getElementById('KTdiv');
+const Sagawadiv = document.getElementById('Sagawadiv');
+
+
 // ----------------------------------Screen adjustment-----------------------------------
 function media(x) {
     if (x.matches) { 
@@ -280,6 +300,57 @@ function filterermobile(x){
       designsection.style.animation = 'dropdown 2s forwards';
 
     });
+
+    function filtererappear(x){
+   
+      x.map((y)=>{
+          if(y.style.display=='block'){
+              y.style.animation='disappear 1s forwards';
+              y.style.display='none';
+              y.style.opacity='0';
+          } 
+      })
+  }
+
+    function CVappear (b){
+      textalignment.style.width= 'auto';
+      outercvdiv.style.display='block';
+      b.style.display='block';
+      b.style.animation='appear 2s';
+      b.style.opacity = '100%';
+      b.style.zIndex='6';
+    } 
+    const CVarray = [Oneatdiv, BJCSdiv, Dnatadiv, JBBdiv, Interpandiv, KTdiv, Sagawadiv]
+
+    Oneat.addEventListener('click', function() {
+      filtererappear(CVarray);
+      CVappear(Oneatdiv);
+      
+    });
+    BJCS.addEventListener('click', function() {
+      filtererappear(CVarray);
+      CVappear(BJCSdiv);
+    })
+    Dnata.addEventListener('click', function() {
+      filtererappear(CVarray);
+      CVappear(Dnatadiv);
+    })
+    JBB.addEventListener('click', function() {
+      filtererappear(CVarray);
+      CVappear(JBBdiv);
+    })
+    Interpan.addEventListener('click', function() {
+      filtererappear(CVarray);
+      CVappear(Interpandiv);
+    })
+    KT.addEventListener('click', function() {
+      filtererappear(CVarray);
+      CVappear(KTdiv);
+    })
+    Sagawa.addEventListener('click', function() {
+      filtererappear(CVarray);
+      CVappear(Sagawadiv);
+    })
 
    engineering.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -534,8 +605,8 @@ function animate(time){
      requestAnimationFrame(animate);
     controls.update();
     TWEEN.update(time);
-    console.log(camera.position);
-    console.log(controls.target);
+    // console.log(camera.position);
+    // console.log(controls.target);
     
 }
 
