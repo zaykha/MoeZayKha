@@ -118,6 +118,37 @@ const contactusiconmobile = document.getElementById('contactusiconmobile');
 const careericonmobile = document.getElementById('careericonmobile');
 const atkhayarplacesmobile = document.getElementById('atkhayarplacesmobile');
 
+const Oneat = document.getElementById('Oneat');
+const BJCS = document.getElementById('BJCS');
+const Dnata = document.getElementById('Dnata');
+const JBB = document.getElementById('JBB');
+const Interpan = document.getElementById('Interpan');
+const KT = document.getElementById('KT');
+const Sagawa = document.getElementById('Sagawa');
+const outercvdiv = document.getElementById('outercvdiv');
+const textalignment = document.getElementById('textalignment');
+
+
+const Oneatdiv = document.getElementById('Oneatdiv');
+const BJCSdiv = document.getElementById('BJCSdiv');
+const Dnatadiv = document.getElementById('Dnatadiv');
+const JBBdiv = document.getElementById('JBBdiv');
+const Interpandiv = document.getElementById('Interpandiv');
+const KTdiv = document.getElementById('KTdiv');
+const Sagawadiv = document.getElementById('Sagawadiv');
+
+const Tech= document.getElementById('Tech');
+const Bizz= document.getElementById('Bizz');
+const Arts= document.getElementById('Arts');
+const skilldisplay= document.getElementById('skilldisplay');
+
+const Techbtn= document.getElementById('Techbtn');
+const Bizzbtn= document.getElementById('Bizzbtn');
+const Artsbtn= document.getElementById('Artsbtn');
+
+const certzoom= document.getElementById('certzoom');
+const imgpopup= document.getElementById('imgpopup');
+
 // ----------------------------------Screen adjustment-----------------------------------
 function media(x) {
     if (x.matches) { 
@@ -281,6 +312,81 @@ function filterermobile(x){
 
     });
 
+    function filtererappear(x,z){
+   
+      x.map((y)=>{
+          if(y.style.display=='block'){
+              y.style.animation='disappear 1s forwards';
+              y.style.display='none';
+              y.style.opacity='0';
+              
+              
+          } 
+      })
+
+      z.map((a)=>{
+        if(a.style.border='1px solid rgb(172,255, 0)'){
+          a.style.border='1px solid rgba(255, 255, 255, 0.3)'
+          a.style.textShadow='none';
+          a.style.color='yellow';
+        }
+      })
+  }
+
+    function CVappear (b){
+      textalignment.style.width= 'auto';
+      outercvdiv.style.display='block';
+      b.style.display='block';
+      b.style.animation='appear 2s';
+      b.style.opacity = '100%';
+      b.style.zIndex='6';
+    } 
+
+    function CVparent (c){
+      c.style.color='green';
+      c.style.border='1px solid rgb(172,255, 0)';
+      c.style.textShadow='0.5px 0.5px 0.5px yellow';
+    }
+    const CVarray = [Oneatdiv, BJCSdiv, Dnatadiv, JBBdiv, Interpandiv, KTdiv, Sagawadiv]
+    const CVparentarr = [Oneat, BJCS, Dnata, JBB, Interpan, KT, Sagawa]
+    Oneat.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Oneatdiv);
+      CVparent(Oneat);
+    });
+    BJCS.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(BJCSdiv);
+      CVparent(BJCS);
+    })
+    Dnata.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Dnatadiv);
+      CVparent(Dnata);
+    })
+    JBB.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(JBBdiv);
+      CVparent(JBB);
+    })
+    Interpan.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Interpandiv);
+      CVparent(Interpan);
+    })
+    KT.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(KTdiv);
+      CVparent(KT);
+    })
+    Sagawa.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Sagawadiv);
+      CVparent(Sagawa);
+    })
+
+   const skilldisplayarr =[Tech, Bizz, Arts];
+   const skillbtnarr = [Techbtn, Bizzbtn, Artsbtn] 
    engineering.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
       .to({x: -0.3770444383937166, y: 1.2798507946275264, z: 0.11017145589707791 },1000).easing(TWEEN.Easing.Quadratic.Out)
@@ -296,6 +402,60 @@ function filterermobile(x){
         toggleicon.style.animation = 'moverightfortoggle 3s forwards';
     }
     });
+    function filtererskillappear(d,z){
+   
+      d.map((f)=>{
+          if(f.style.display=='block'){
+             f.style.animation='disappear 1s forwards';
+              f.style.display='none';
+              f.style.opacity='0';              
+          } 
+      })
+      z.map((a)=>{
+        if(a.style.color='rgb(205,255, 0)'){
+          a.style.color='rgb(172, 169, 0);';
+          a.style.fontSize='1.8rem';
+        }
+
+      })
+  }
+    function skillappear (b){
+      skilldisplay.style.display= 'block';
+      b.style.display='block';
+      b.style.animation='appear 2s';
+      b.style.opacity = '100%';
+      b.style.zIndex='6';
+    } 
+
+    function skillbtnactive(j){
+      j.style.color='green';
+      j.style.fontSize='4rem';
+      j.style.textShadow='1px 1px 1px yellow';
+    }
+    Techbtn.addEventListener('click', function(){
+      filtererskillappear(skilldisplayarr,skillbtnarr);
+      skillappear(Tech);
+      skillbtnactive(Techbtn);
+    })
+    Bizzbtn.addEventListener('click', function(){
+      filtererskillappear(skilldisplayarr,skillbtnarr);
+      skillappear(Bizz);
+      skillbtnactive(Bizzbtn);
+    })
+    Artsbtn.addEventListener('click', function(){
+      filtererskillappear(skilldisplayarr,skillbtnarr);
+      skillappear(Arts);
+      skillbtnactive(Artsbtn);
+    })
+
+    certzoom.addEventListener('click', function(){
+      imgpopup.style.display='block';
+    })
+    
+    imgpopup.addEventListener('click', function(){
+      imgpopup.style.display='none';
+    })
+
     engineeringicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
         .to({x: -0.3770444383937166, y: 1.2798507946275264, z: 0.11017145589707791 },1000).easing(TWEEN.Easing.Quadratic.Out)
@@ -534,8 +694,8 @@ function animate(time){
      requestAnimationFrame(animate);
     controls.update();
     TWEEN.update(time);
-    console.log(camera.position);
-    console.log(controls.target);
+    // console.log(camera.position);
+    // console.log(controls.target);
     
 }
 
