@@ -3,8 +3,8 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as TWEEN from '@tweenjs/tween.js';
-
-
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
+import {RectAreaLightHelper} from 'three/examples/jsm/helpers/RectAreaLightHelper';
 
 document.getElementById("hideAll").style.display = "block";
 window.onload = function() 
@@ -23,23 +23,40 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.target = new THREE.Vector3(-8.7, 4.4, 4.4);
 renderer.render(scene, camera);
 
-// function addStar(){
-//     const geometry = new THREE.SphereGeometry(0.25,24,24);
-//     const material = new THREE.MeshStandardMaterial({color: 0xb7cdf7})
-//     const star = new THREE.Mesh ( geometry, material);
+function addStar(){
+    const geometry = new THREE.SphereGeometry(0.25,24,24);
+    const material = new THREE.MeshStandardMaterial({color: 0xb7cdf7})
+    const star = new THREE.Mesh ( geometry, material);
 
-//     const [x,y,z] =Array(3).fill().map(()=> THREE.MathUtils.randFloatSpread(100));
-//     star.position.set(x,y,z);
-//     scene.add(star)
-// }
-// Array(300).fill().forEach(addStar);
+    const [x,y,z] =Array(3).fill().map(()=> THREE.MathUtils.randFloatSpread(100));
+    star.position.set(x,y,z);
+    scene.add(star)
+}
+Array(300).fill().forEach(addStar);
 
-// const spaceTexture = new THREE.TextureLoader().load('galaxy2.jpg');
-// scene.background = spaceTexture;
+const spaceTexture = new THREE.TextureLoader().load('galaxy2.jpg');
+scene.background = spaceTexture;
 
+(function() {
+  // https://dashboard.emailjs.com/admin/account
+  emailjs.init('hanLzw9pqdz5PNq5a');
+})();
 
-
-
+function sendEmail() {
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+      // event.preventDefault();
+      // generate a five digit number for the contact_number variable
+      this.contact_number.value = Math.random() * 100000 | 0;
+      // these IDs from the previous steps
+      emailjs.sendForm('contact_service', 'contact_form', this)
+          .then(function() {
+              console.log('SUCCESS!');
+          }, function(error) {
+              console.log('FAILED...', error);
+          });
+  });
+}
+sendEmail();
 // ----------------------------------loading-------------------------------------------
 let mixer;
 const loadingManager = new THREE.LoadingManager();
@@ -96,9 +113,10 @@ const corporatesection= document.getElementById('corporatesection');
 const portfoliosection= document.getElementById('portfoliosection');
 const toggleicon= document.getElementById('toggleicon');
 const contactussection = document.getElementById('contactussection');
+const mobileprev = document.getElementById('mobileprev')
+const mobilenext = document.getElementById('mobilenext')
 const careersection = document.getElementById('careersection')
-const atkhayarplacessection= document.getElementById('atkhayarplacessection');
-const atkhayarplaces= document.getElementById('atkhayarplaces');
+
 
 
 const homeicon = document.getElementById('homeicon');
@@ -116,18 +134,36 @@ const corporateiconmobile = document.getElementById('corporateiconmobile');
 const portfolioiconmobile = document.getElementById('portfolioiconmobile');
 const contactusiconmobile = document.getElementById('contactusiconmobile');
 const careericonmobile = document.getElementById('careericonmobile');
-const atkhayarplacesmobile = document.getElementById('atkhayarplacesmobile');
 
 const Oneat = document.getElementById('Oneat');
+const oneat = document.getElementById('oneat');
+
 const BJCS = document.getElementById('BJCS');
+const bjcs = document.getElementById('bjcs');
+
 const Dnata = document.getElementById('Dnata');
+const dnata = document.getElementById('dnata');
+
 const JBB = document.getElementById('JBB');
+const jbb = document.getElementById('jbb');
+
 const Interpan = document.getElementById('Interpan');
+const interpan = document.getElementById('interpan');
+
 const KT = document.getElementById('KT');
+const kt = document.getElementById('kt');
+
 const Sagawa = document.getElementById('Sagawa');
+const sagawa = document.getElementById('sagawa');
+
+const swiperdoc = document.getElementById('swiper');
 const outercvdiv = document.getElementById('outercvdiv');
 const textalignment = document.getElementById('textalignment');
-
+const cvwrapper= document.getElementById('cvwrapper');
+const workxp= document.getElementById('workxp');
+const prevButton = document.getElementById("slide-arrow-prev");
+const nextButton = document.getElementById("slide-arrow-next");
+const slide = document.querySelector(".cvcard");
 
 const Oneatdiv = document.getElementById('Oneatdiv');
 const BJCSdiv = document.getElementById('BJCSdiv');
@@ -141,10 +177,13 @@ const Tech= document.getElementById('Tech');
 const Bizz= document.getElementById('Bizz');
 const Arts= document.getElementById('Arts');
 const skilldisplay= document.getElementById('skilldisplay');
+const skilltitle= document.getElementById('skilltitle');
 
 const Techbtn= document.getElementById('Techbtn');
 const Bizzbtn= document.getElementById('Bizzbtn');
 const Artsbtn= document.getElementById('Artsbtn');
+const margin80= document.getElementById('margin80');
+
 
 const certzoom= document.getElementById('certzoom');
 const imgpopup= document.getElementById('imgpopup');
@@ -155,10 +194,8 @@ function media(x) {
         // camera.position.setX(8.15548149947991);
         // camera.position.setY(7.9926503201927055);
         // camera.position.setZ(8.589577576676497);
-
-        camera.position.setX(7);
-        camera.position.setY(6.797);
-        camera.position.setZ(15.885);
+        camera.position.set( 3.0230252927405474, 2.939971201224241, 2.974592596256046);
+        controls.target.set(-2.8475333129158833, 1.992119604119649, -2.6641477161850067);
       } else {
          
       
@@ -180,38 +217,51 @@ scene.add(ambientLight);
 // const light = new THREE.HemisphereLight( 0xffffbb, 0xffffbb, 1 );
 // light.position.set(0,25,0);
 // scene.add( light );
-const color = 0xFFFFFF;
-    const intensity = 2;
-    const width = 12;
-    const height = 4;
-const light = new THREE.RectAreaLight(color, 1.5, width, height);
-    light.position.set(0, 2.9, 0);
+const color = 0xA020F0;
+const color2 = 0x00FFFF;
+const color3 =0xFFFFFF;
+    const intensity = 10;
+    const width = 0.5;
+    const height = 11;
+const light = new THREE.RectAreaLight(color, 11, 1.5, width, height);
+    light.position.set(0, 1.5, -1);
     light.rotation.x = THREE.Math.degToRad(-90);
-const light1 = new THREE.RectAreaLight(color, 1, width, height);
-    light1.position.set(0, 4.5, -4);
+    
+const light1 = new THREE.RectAreaLight(color2, 11, 0.5, 11);
+    light1.position.set(-1, 1.5, -4);
     light1.rotation.x = THREE.Math.degToRad(-90);
-const light2 = new THREE.RectAreaLight(color, 1.5, width, height);
-    light2.position.set(-4, 7, -4);
+
+const light2 = new THREE.RectAreaLight(color3, 3, 1, 1);
+    light2.position.set(0, 1.8, 0);
     light2.rotation.x = THREE.Math.degToRad(-90);
-const light3 = new THREE.RectAreaLight(color, 1.5, width, height);
-    light3.position.set(-4, 11, -8);
+
+const light3 = new THREE.RectAreaLight(color3, 5, 0.2, 0.2);
+    light3.position.set(-0.5, 0.7, 0.01);
     light3.rotation.x = THREE.Math.degToRad(-90);
-const light4 = new THREE.RectAreaLight(color, 1.5, width, height);
-    light4.position.set(-8, 13, -8);
-    light4.rotation.x = THREE.Math.degToRad(-90);
+const light4 = new THREE.RectAreaLight(color3, 4, 0.2, 0.2);
+    light4.position.set(0.6, 0.36, 0.5);
+    light4.rotation.x = THREE.Math.degToRad(90);
+const light5 = new THREE.RectAreaLight(color3, 4, 0.2, 0.2);
+    light5.position.set(-0.68, 0.36, 0.56);
+    light5.rotation.x = THREE.Math.degToRad(90);
+const light6 = new THREE.RectAreaLight(color2, 1, 1, 1);
+    light6.position.set(-0.6, 1.8, -0.1);
+    light6.rotation.x = THREE.Math.degToRad(-90);
+    // const helper = new RectAreaLightHelper( light6);
+    // light6.add( helper )
+    
 
+    scene.add(light, light1, light2, light3, light4, light5, light6);
 
-    scene.add(light, light1, light2, light3, light4);
-
-const lightHelper = new THREE.PointLightHelper(light4)
-const gridHelper = new THREE.GridHelper(200,50);
-scene.add(lightHelper, gridHelper);
-const axesHelper = new THREE.AxesHelper( 5 );
-scene.add( axesHelper );
+// const lightHelper = new THREE.PointLightHelper(light6)
+// const gridHelper = new THREE.GridHelper(200,50);
+// scene.add(lightHelper, gridHelper);
+// const axesHelper = new THREE.AxesHelper( 5 );
+// scene.add( axesHelper );
 
 // ------------------------------Routing for Web (1024px)---------------------------
 const nav =document.getElementById('navflex');
-const sectionarray =[designsection, engineeringsection, corporatesection, portfoliosection, contactussection, careersection, atkhayarplacessection]
+const sectionarray =[designsection, engineeringsection, corporatesection, portfoliosection, contactussection, careersection]
 
 
 function filterer(x){
@@ -260,11 +310,11 @@ function filterermobile(x){
     });
     homeiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-    .to({x:9.047917002076815,y:13.385470590523568,z:9.807665782056354},1000).easing(TWEEN.Easing.Quadratic.Out)
+    .to({x: 2.245283037186975, y: 2.651320100700064, z: 2.54536487813899},1000).easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
     new TWEEN.Tween(controls.target)
-    .to({ x:-4.966121757132901,y:6.44879819363984,z:-5.5844968904982535},1000).easing(TWEEN.Easing.Quadratic.Out)
+    .to({ x: -5.153252283464849, y: 0.5745845805548225, z: -5.689631167038444},1000).easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
         filterermobile(sectionarray);
@@ -273,11 +323,11 @@ function filterermobile(x){
 
     design.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x: -0.3004146496755853, y: 1.0067967671531366, z: -0.6522936262318377},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.2902927614590909, y: 0.9619112082046571, z: -0.37407924668938547},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({ x: -3.7169063104491844, y: -0.14855073501722416, z: -0.6087966729655832},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({ x: -3.7488991606326936, y: -0.019425884611936596, z: -0.6641730068910666},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
       nav.style.animation= 'moveleft 3s forwards';
       designsection.style.animation = 'moveright 3s forwards';
@@ -287,11 +337,11 @@ function filterermobile(x){
     });
     designicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x: -0.3004146496755853, y: 1.0067967671531366, z: -0.6522936262318377 },1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.2902927614590909, y: 0.9619112082046571, z: -0.37407924668938547 },1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({  x: -3.7169063104491844, y: -0.14855073501722416, z: -0.6087966729655832},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({  x: -3.7488991606326936, y: -0.019425884611936596, z: -0.6641730068910666},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       filterer(sectionarray);
@@ -300,11 +350,11 @@ function filterermobile(x){
     });
     designiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x: 4.257642365597153, y: 6.921443891687598, z: 0.29519879726756937},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.29653563936200733, y: 0.9291892973224034, z: -0.28632078167634223},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({x: -2.2349388906635803, y: 3.7077444037201364, z: -6.835855182119292},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -2.8228853456474674, y: 1.4256323448827652, z: -2.8122337979797063},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       filterermobile(sectionarray);
@@ -332,6 +382,27 @@ function filterermobile(x){
         }
       })
   }
+  const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'vertical',
+    loop: true,
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  });
 
     function CVappear (b){
       textalignment.style.width= 'auto';
@@ -340,12 +411,15 @@ function filterermobile(x){
       b.style.animation='appear 2s';
       b.style.opacity = '100%';
       b.style.zIndex='6';
+      swiperdoc.style.top='3rem';
+      workxp.style.display='none';
     } 
 
     function CVparent (c){
       c.style.color='green';
       c.style.border='1px solid rgb(172,255, 0)';
       c.style.textShadow='0.5px 0.5px 0.5px yellow';
+
     }
     const CVarray = [Oneatdiv, BJCSdiv, Dnatadiv, JBBdiv, Interpandiv, KTdiv, Sagawadiv]
     const CVparentarr = [Oneat, BJCS, Dnata, JBB, Interpan, KT, Sagawa]
@@ -354,15 +428,35 @@ function filterermobile(x){
       CVappear(Oneatdiv);
       CVparent(Oneat);
     });
+    oneat.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Oneatdiv);
+      // CVparent(Oneat);
+    });
     BJCS.addEventListener('click', function() {
       filtererappear(CVarray,CVparentarr);
       CVappear(BJCSdiv);
       CVparent(BJCS);
     })
+    bjcs.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(BJCSdiv);
+      // CVparent(bjcs);
+    })
     Dnata.addEventListener('click', function() {
       filtererappear(CVarray,CVparentarr);
       CVappear(Dnatadiv);
       CVparent(Dnata);
+    })
+    dnata.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Dnatadiv);
+      // CVparent(dnata);
+    })
+    jbb.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(JBBdiv);
+      // CVparent(jbb);
     })
     JBB.addEventListener('click', function() {
       filtererappear(CVarray,CVparentarr);
@@ -374,15 +468,30 @@ function filterermobile(x){
       CVappear(Interpandiv);
       CVparent(Interpan);
     })
+    interpan.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Interpandiv);
+      // CVparent(interpan);
+    })
     KT.addEventListener('click', function() {
       filtererappear(CVarray,CVparentarr);
       CVappear(KTdiv);
       CVparent(KT);
     })
+    kt.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(KTdiv);
+      // CVparent(kt);
+    })
     Sagawa.addEventListener('click', function() {
       filtererappear(CVarray,CVparentarr);
       CVappear(Sagawadiv);
       CVparent(Sagawa);
+    })
+    sagawa.addEventListener('click', function() {
+      filtererappear(CVarray,CVparentarr);
+      CVappear(Sagawadiv);
+      // CVparent(sagawa);
     })
 
    const skilldisplayarr =[Tech, Bizz, Arts];
@@ -414,7 +523,7 @@ function filterermobile(x){
       z.map((a)=>{
         if(a.style.color='rgb(205,255, 0)'){
           a.style.color='rgb(172, 169, 0);';
-          a.style.fontSize='1.8rem';
+          a.style.fontSize='2rem';
         }
 
       })
@@ -425,11 +534,13 @@ function filterermobile(x){
       b.style.animation='appear 2s';
       b.style.opacity = '100%';
       b.style.zIndex='6';
+      skilltitle.style.display='none';
+      margin80.style.top='5vh';
     } 
 
     function skillbtnactive(j){
       j.style.color='green';
-      j.style.fontSize='4rem';
+      j.style.fontSize='2rem';
       j.style.textShadow='1px 1px 1px yellow';
     }
     Techbtn.addEventListener('click', function(){
@@ -471,11 +582,11 @@ function filterermobile(x){
     });
     engineeringiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x: -0.4004086222160943, y: 9.179173507574692, z: 0.24066599620699503},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -0.08003414175494417, y: 1.6734134659507176, z: -0.17488807271056256},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({x: -5.424244233480451, y: 6.69247410493196, z: -5.277207637326074},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -3.010387295269596, y: 1.470477769999485, z: -0.2236068605613211},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterermobile(sectionarray);
@@ -483,6 +594,22 @@ function filterermobile(x){
 
     });
 
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Marketing Services', 10],
+      ['Commercial Tech', 6],
+      ['Airport Services', 4],
+      ['Futures trading', 4]
+    ]);
+
+    var options = { 'width':500, 'height':400};
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+  }
     corporate.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
       .to({x: -0.40273215727976264, y: 0.8630821307561408, z: -0.5543521621716916 },1000).easing(TWEEN.Easing.Quadratic.Out)
@@ -513,11 +640,11 @@ function filterermobile(x){
     });
     corporateiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-      .to({x: -0.11878575198287766, y: 10.689562919987658, z: -3.986535051614982},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.24792986761535457, y: 1.1128008938846679, z: -0.1351727777042857},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       new TWEEN.Tween(controls.target)
-      .to({x: -4.204035292044349, y: 9.751667308198762, z: -7.969362109927145},1000).easing(TWEEN.Easing.Quadratic.Out)
+      .to({x: -0.15983667397475823, y: 1.145348997595008, z: -3.071446986880469},1000).easing(TWEEN.Easing.Quadratic.Out)
       .start();
 
       filterermobile(sectionarray);
@@ -554,45 +681,17 @@ function filterermobile(x){
     });  
     portfolioiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x: -4.882033135613094, y: 14.103867029011525, z: -4.813381303715374},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -0.23686830473012455, y: 0.7047768679681863, z: 0.2761021527418035},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({x: -6.870865960867908, y: 13.265673380567069, z: -6.62803328658111},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -3.0946029890454256, y: 0.9625790878791635, z: -2.505748961451268},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterermobile(sectionarray);
       portfoliosection.style.animation = 'dropdown 2s forwards';
 
     });  
-
-    atkhayarplaces.addEventListener('click', function() {
-        new TWEEN.Tween(camera.position)
-      .to({x: -3.8675652957615148, y: 0.2664908487348461, z: 0.6890026939014559 },1000).easing(TWEEN.Easing.Quadratic.Out)
-      .start();
-
-      new TWEEN.Tween(controls.target)
-      .to({ x:-7.065,y:11.7746,z:-5.3276},1000).easing(TWEEN.Easing.Quadratic.Out)
-      .start();
-      filterer(sectionarray);
-      atkhayarplacessection.style.animation = 'moveright 3s forwards';
-      
-    }
-    );
-    atkhayarplacesmobile.addEventListener('click', function() {
-        new TWEEN.Tween(camera.position)
-      .to({x:-5.81035,y:12.1179,z:-4.92961 },1000).easing(TWEEN.Easing.Quadratic.Out)
-      .start();
-
-      new TWEEN.Tween(controls.target)
-      .to({ x:-7.065,y:11.7746,z:-5.3276},1000).easing(TWEEN.Easing.Quadratic.Out)
-      .start();
-      filterermobile(sectionarray);
-      atkhayarplacessection.style.animation = 'dropdown 3s forwards';
-      
-    }
-    );
-
 
     contactus.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -623,11 +722,11 @@ function filterermobile(x){
     }); 
     contactusiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x: 3.8324506570881156, y: 0.6963984326943837, z: 4.38498154897478},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -0.40879038009790625, y: 0.5530325128008731, z: 0.5278328019952607},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({x: -3.2106428727349132, y: 4.771476472501272, z: -1.7077993534282354},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: -4.1844260577815975, y: 0.18960640487674507, z: 0.6923041526045425},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterermobile(sectionarray);
@@ -664,11 +763,11 @@ function filterermobile(x){
     }); 
     careericonmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
-        .to({x: 5.178484036980921, y: 0.3052295271192733, z: 1.9106038117412134},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: 0.5469893310933359, y: 0.5361876472782612, z: 0.7878330278126424},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
   
         new TWEEN.Tween(controls.target)
-        .to({x: -3.241435638669144, y: 4.5031341540002146, z: -1.9385462274558405},1000).easing(TWEEN.Easing.Quadratic.Out)
+        .to({x: 0.5318387932809859, y: 0.8218399497695639, z: -3.631144221788547},1000).easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       filterermobile(sectionarray);
