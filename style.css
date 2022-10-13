@@ -23,6 +23,13 @@ canvas {
   top:0;
   left:0;
 }
+#load{
+  width:100%;
+  height:100%;
+  position:fixed;
+  z-index:9999;
+  background:url(/Eclipse.gif) no-repeat center center rgba(0, 0, 0, 0.071);
+}
 #navflex {
   position: absolute;
   color:rgb(218, 214, 6);
@@ -48,16 +55,32 @@ canvas {
 }
 
 @keyframes moveleft {
-  0% {left:0}
+  0% {-webkit-transform: translate(0,0);
+    -moz-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    transform: translate(0,0);}
   100%{
-    left:-100%;
+    -webkit-transform: translate(-100%,0);
+    -moz-transform: translate(-100%,0);
+    -o-transform: translate(-100%,0);
+    -ms-transform: translate(-100%,0);
+    transform: translate(-100%,0);
   }
 }
 
 @keyframes moveright {
-  0% {left:-50%}
+  0% {-webkit-transform: translate(-50%,0);
+    -moz-transform: translate(-50%,0);
+    -o-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    transform: translate(-50%,0);}
   100%{
-    left:5rem;
+    -webkit-transform: translate(55.5vw,0);
+    -moz-transform: translate(55.5vw,0);
+    -o-transform: translate(55.5vw,0);
+    -ms-transform: translate(55.5vw,0);
+    transform: translate(55.2vw,0);;
   }
 }
 @keyframes moverightfortoggle {
@@ -102,7 +125,34 @@ a{
 a:hover{
   color:rgb(225, 225, 225);
 }
-
+.gificonstatic{
+  position:absolute;
+  width:2.5rem;
+  height:2.5rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: rgb(253, 253, 253);
+  border-radius:10%;
+  z-index: 5;
+  transition: all 0.5s linear;
+  /* outline: 6px solid white; */
+}
+.gificonstatic:hover{
+  opacity:0;
+  border-radius: 50%;
+}
+.gificon{
+  width:2.5rem;
+  height:2.5rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: rgb(255, 255, 255);
+  border-radius:50%;
+  z-index: -2;
+  /* outline: 6px solid white; */
+}
 #designsection{
   position:absolute;
   left: -50%;
@@ -476,15 +526,19 @@ right:0;
   flex-direction: column;
 }
 .columndiv a{
-  color:yellow;
+  color:rgb(55, 255, 0);
 }
 .columndiv a:hover{
-  color:rgb(0, 255, 76);
+  color:rgb(238, 238, 238);
 }
 .keyattributecontent{
   width: 80%;
   font-size:1.1rem;
   margin: auto;
+}
+.nonhover{
+  cursor:not-allowed;
+  
 }
 #careersection{
   position:absolute;
@@ -509,29 +563,6 @@ right:0;
   -webkit-backdrop-filter: blur(5px);
 }
 
-#atkhayarplacessection{
-  position:absolute;
-  width:40vw;
-  height:100%;
-  text-align: center;
- font-size:1.2rem;
-  color:rgb(255, 132, 0);
-  text-shadow:1px 1px 1px rgb(0, 0, 0);
-  /* border:1px solid red; */
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  background-color: rgba(0, 0, 0, 0.737);
-  left: -50%;
-  background-image: url('./atkhayarbg.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-#atkhayarplacesmobile{
-  display:none;
-}
 .bgadding{
 background-color: rgba(0, 0, 0, 0.744)
 }
@@ -636,7 +667,7 @@ textarea:focus{
 
 .icon{
   position:relative;
-  margin-top: 3.2rem;
+  margin-top: 2rem;
   /* color: #FFB52E; */
 }
 
@@ -644,7 +675,7 @@ textarea:focus{
   content: attr(data-hover);
 visibility: hidden;
 opacity: 0;
-width: 140px;
+width: 5rem;
 background-color: rgba(0, 0, 0, 0.8);
 color: #fff;
 text-align: center;
@@ -654,9 +685,9 @@ transition: opacity 1s ease-in-out;
 font-size: 1.2rem;
 
 position: absolute;
-z-index: 1;
-left: 0;
-top: 50%;
+z-index: 8;
+left: 2.5rem;
+top: 100%;
 }
 
 .icon:hover:before{
@@ -994,11 +1025,6 @@ label{
     width:100%;
     left:0;
   }
-  #atkhayarplacesmobile{
-    display: block;
-  }
-  #atkhayarplaces{
-    display:none;
-  }
+
 }
 

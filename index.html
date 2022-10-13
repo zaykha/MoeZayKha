@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" href="/public/hacker.png" />
     <link href='https://fonts.googleapis.com/css?family=Boogaloo' rel='stylesheet'>
     <link
   rel="stylesheet"
@@ -18,6 +18,8 @@
   </head>
   <body>
     <div style="display:none; padding:0; margin:0;" id="hideAll">&nbsp;</div>
+    <div id="load"></div>
+    <div id="contents">
     <nav id="navflex">
       <ul id="web">
         
@@ -35,26 +37,33 @@
       </ul>
     </nav>
       <div id="toggleicon">
-        <a id="homeicon" class="navALT" data-hover="Home">
-          <i class="fa-solid fa-house fa-2xl"></i>
+        <a id="homeicon" class="icon navALT" data-hover="Home">
+          <img class="gificonstatic" id="gificonhome" src="/public/icons/hackericon.png" alt="home" >
+          <img class="gificon" src="/public/icons/hackericon-unscreen.gif" alt="home">
         </a>
         <a id="designicon" class="icon navALT" data-hover="CV">
-          <i class="fa-solid fa-palette fa-2xl"></i>
+          <img class="gificonstatic" id="gificoncv" src="/public/icons/id.png" alt="CV" >
+          <img class="gificon" src="/public/icons/id.gif" alt="CV">
         </a>
         <a id="engineeringicon" class="icon navALT" data-hover="Skills">
-          <i class="fa-solid fa-gears fa-2xl"></i>
+          <img class="gificonstatic" id="gificonskills" src="/public/icons/mortarboard.png" alt="CV" >
+          <img class="gificon" src="/public/icons/mortarboard.gif" alt="CV">
         </a>
         <a id="corporateicon" class="icon navALT" data-hover="Experience By Industries">
-          <i class="fa-solid fa-people-roof fa-2xl"></i>
+          <img class="gificonstatic" id="gificonEBI" src="/public/icons/hexagonal.png" alt="CV" >
+          <img class="gificon" src="/public/icons/hexagonal.gif" alt="CV">
         </a>
         <a id="portfolioicon" class="icon navALT" data-hover="Portfolio">
-          <i class="fa-solid fa-chart-pie fa-2xl"></i>
+          <img class="gificonstatic" id="gificonportfolio" src="/public/icons/briefcase.png" alt="CV" >
+          <img class="gificon" src="/public/icons/briefcase.gif" alt="CV">
         </a>
         <a id="contactusicon" class="icon navALT" data-hover="Soft Skills">
-          <i class="fa-solid fa-comment-dots fa-2xl"></i>
+          <img class="gificonstatic"  id="gificonSS" src="/public/icons/infographic.png" alt="CV" >
+          <img class="gificon" src="/public/icons/infographic.gif" alt="CV">
         </a>
         <a id="careericon" class="icon navALT" data-hover="Contact Me">
-          <i class="fa-solid fa-briefcase fa-2xl"></i>
+          <img class="gificonstatic" id="gificoncontact" src="/public/icons/phone.png" alt="CV" >
+          <img class="gificon" src="/public/icons/phone.gif" alt="CV">
         </a>
       </div>
 <!-- --------------------------------------------mobile nav--------------------------------- -->
@@ -152,16 +161,16 @@
   <!-- Full-width images with number and caption text -->
   <div class="swiper-slide" id="oneat" >
     <div class="numbertext" >1 / 7</div>
-    <h3>Junior developer (Intern)</h3>
+    <h3>Junior developer</h3>
     <p>One Atkhayar Company Limited</p>
-    <p>03/2022 - 08/2022</p>
+    <p>07/2021 - 09/2022</p>
   </div>
 
   <div class="swiper-slide" id="bjcs">
     <div class="numbertext">2 / 7</div>
       <h3>Business Development Executive</h3>
           <p>Brain Juice creative Solution</p>
-          <p>08/2020 - 01/2022</p>
+          <p>08/2020 - 06/2021</p>
   </div>
 
   <div class="swiper-slide" id="dnata">
@@ -614,14 +623,14 @@
           <div class="columndiv">
           <a href="https://chat-chin.com/" target="_blank">Chat Chin</a>
           <a href="http://www.denaecoffee.com/" target="_blank">Denae Coffee</a>
-          <a id="atkhayarplaces" >Atkhayar Places</a>
-          <a id="atkhayarplacesmobile">Atkhayar Places</a>
+          <a href="/">Atkhayar Places</a>
+          
           </div>
         <h3>Personal project and freelencing</h3>
           <div class="columndiv">
-            <a href="https://chat-chin.com/" target="_blank">Gourmet Express</a>
-            <a href="https://chat-chin.com/" target="_blank">Shizuoka Japanese Language School</a>  
-            <a href="https://chat-chin.com/" target="_blank">XinYu trading company limited</a>  
+            <a target="_blank">Gourmet Express</a>
+            <a class="nonhover" target="_blank" style="color: red;">Shizuoka Japanese Language School <sup class="titlesup">(under Nego)</sup> </a>  
+            <a class="nonhover" target="_blank" style="color: orange;">XinYu trading company limited <sup class="titlesup">(under Construction)</sup> </a>  
           
           </div>
         
@@ -694,7 +703,7 @@
      <label for="progress-bar">Building...</label>
      <progress id="progress-bar" value="0" max="100"></progress>
    </div>
-
+  </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

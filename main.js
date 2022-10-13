@@ -128,12 +128,26 @@ const contactusicon = document.getElementById('contactusicon');
 const careericon = document.getElementById('careericon');
 
 const homeiconmobile = document.getElementById('homeiconmobile');
+const gificonhome = document.getElementById('gificonhome');
+
 const designiconmobile = document.getElementById('designiconmobile');
+const gificoncv = document.getElementById('gificoncv');
+
 const engineeringiconmobile = document.getElementById('engineeringiconmobile');
+const gificonskills = document.getElementById('gificonskills');
+
 const corporateiconmobile = document.getElementById('corporateiconmobile');
+const gificonEBI = document.getElementById('gificonEBI');
+
 const portfolioiconmobile = document.getElementById('portfolioiconmobile');
+const gificonportfolio = document.getElementById('gificonportfolio');
+
 const contactusiconmobile = document.getElementById('contactusiconmobile');
+const gificonSS = document.getElementById('gificonSS');
+
 const careericonmobile = document.getElementById('careericonmobile');
+const gificoncontact = document.getElementById('gificoncontact');
+
 
 const Oneat = document.getElementById('Oneat');
 const oneat = document.getElementById('oneat');
@@ -262,7 +276,19 @@ const light6 = new THREE.RectAreaLight(color2, 1, 1, 1);
 // ------------------------------Routing for Web (1024px)---------------------------
 const nav =document.getElementById('navflex');
 const sectionarray =[designsection, engineeringsection, corporatesection, portfoliosection, contactussection, careersection]
-
+const activeiconarray = [gificonhome, gificoncv, gificonskills, gificonEBI, gificonportfolio, gificonSS, gificoncontact]
+function activeicon(n){
+  n.style.outline='6px solid yellow';
+  n.style.borderRadius='50%';
+}
+function filteractiveicon(p){
+  p.map((x)=>{
+    if(x.style.outline='6px solid yellow'){
+      x.style.outline='none';
+      x.style.borderRadius='10%';
+    }
+  })
+}
 
 function filterer(x){
    
@@ -294,6 +320,7 @@ function filterermobile(x){
        x:-3.7169063104491844,y:-0.14855073501722424,z:-0.6087966729655833},1000).easing(TWEEN.Easing.Quadratic.Out)
     .start();
     });
+
     homeicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
     .to({x:1.8657201411138535,y:1.4935185925537058,z:2.66097357050962 },1000).easing(TWEEN.Easing.Quadratic.Out)
@@ -307,6 +334,7 @@ function filterermobile(x){
         nav.style.animation = 'moverightfornav 3s forwards';
         toggleicon.style.animation = 'moveleft 3s forwards';
 
+        activeicon(gificonhome);
     });
     homeiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -334,6 +362,8 @@ function filterermobile(x){
       if(nav.style.animationName=='moveleft'){
         toggleicon.style.animation = 'moverightfortoggle 3s forwards';
     }
+    filteractiveicon(activeiconarray);
+    activeicon(gificoncv);
     });
     designicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -346,7 +376,8 @@ function filterermobile(x){
 
       filterer(sectionarray);
       designsection.style.animation = 'moveright 2s forwards';
-
+      filteractiveicon(activeiconarray);
+    activeicon(gificoncv);
     });
     designiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -510,6 +541,8 @@ function filterermobile(x){
       if(nav.style.animation='moveleft 3s forwards'){
         toggleicon.style.animation = 'moverightfortoggle 3s forwards';
     }
+    filteractiveicon(activeiconarray);
+    activeicon(gificonskills);
     });
     function filtererskillappear(d,z){
    
@@ -578,7 +611,8 @@ function filterermobile(x){
 
       filterer(sectionarray);
       engineeringsection.style.animation = 'moveright 2s forwards';
-
+      filteractiveicon(activeiconarray);
+      activeicon(gificonskills);
     });
     engineeringiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -624,6 +658,8 @@ function filterermobile(x){
       if(nav.style.animation='moveleft 3s forwards'){
         toggleicon.style.animation = 'moverightfortoggle 3s forwards';
     }
+    filteractiveicon(activeiconarray);
+    activeicon(gificonEBI);
     });
     corporateicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -636,7 +672,8 @@ function filterermobile(x){
 
       filterer(sectionarray);
       corporatesection.style.animation = 'moveright 2s forwards';
-
+      filteractiveicon(activeiconarray);
+      activeicon(gificonEBI);
     });
     corporateiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -665,6 +702,8 @@ function filterermobile(x){
       if(nav.style.animation='moveleft 3s forwards'){
         toggleicon.style.animation = 'moverightfortoggle 3s forwards';
     }
+    filteractiveicon(activeiconarray);
+    activeicon(gificonportfolio);
     });
     portfolioicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -677,7 +716,8 @@ function filterermobile(x){
 
       filterer(sectionarray);
       portfoliosection.style.animation = 'moveright 2s forwards';
-
+      filteractiveicon(activeiconarray);
+      activeicon(gificonportfolio);
     });  
     portfolioiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -706,6 +746,8 @@ function filterermobile(x){
       if(nav.style.animation='moveleft 3s forwards'){
         toggleicon.style.animation = 'moverightfortoggle 3s forwards';
     }
+    filteractiveicon(activeiconarray);
+    activeicon(gificonSS);
     });
     contactusicon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -718,7 +760,8 @@ function filterermobile(x){
 
       filterer(sectionarray);
       contactussection.style.animation = 'moveright 2s forwards';
-
+      filteractiveicon(activeiconarray);
+      activeicon(gificonSS);
     }); 
     contactusiconmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -747,6 +790,8 @@ function filterermobile(x){
       if(nav.style.animation='moveleft 3s forwards'){
         toggleicon.style.animation = 'moverightfortoggle 3s forwards';
     }
+    filteractiveicon(activeiconarray);
+    activeicon(gificoncontact);
     });
     careericon.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -759,7 +804,8 @@ function filterermobile(x){
 
       filterer(sectionarray);
       careersection.style.animation = 'moveright 2s forwards';
-
+      filteractiveicon(activeiconarray);
+      activeicon(gificoncontact);
     }); 
     careericonmobile.addEventListener('click', function() {
         new TWEEN.Tween(camera.position)
@@ -799,4 +845,15 @@ function animate(time){
 }
 
 animate();
-
+document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'interactive') {
+       document.getElementById('contents').style.visibility="hidden";
+  } else if (state == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+         document.getElementById('load').style.visibility="hidden";
+         document.getElementById('contents').style.visibility="visible";
+      },1000);
+  }
+}
