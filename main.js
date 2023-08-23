@@ -42,8 +42,8 @@ function addStar() {
 }
 Array(300).fill().forEach(addStar);
 
-// const spaceTexture = new THREE.TextureLoader().load("galaxy4.jpg");
-// scene.background = spaceTexture;
+const spaceTexture = new THREE.TextureLoader().load("galaxy4.jpg");
+scene.background = spaceTexture;
 
 (function () {
   // https://dashboard.emailjs.com/admin/account
